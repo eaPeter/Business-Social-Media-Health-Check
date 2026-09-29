@@ -27,7 +27,6 @@ npm run dev                  # http://localhost:3000   (admin: /admin)
 | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Public. Used only for admin sign-in. |
 | `SUPABASE_SERVICE_ROLE_KEY` | **Server only.** Saves and reads submissions. Never prefix with `NEXT_PUBLIC_`. |
 | `ADMIN_EMAILS` | Comma-separated list. Only these accounts get into `/admin`, even if other Supabase users exist. Empty = nobody. |
-| `NEXT_PUBLIC_CTA_URL` | Destination of the "Let's Talk" button. |
 
 On Vercel, add the same variables under Project Settings → Environment Variables.
 
@@ -44,7 +43,7 @@ To swap the font, edit the `@font-face` block and `--font-serif` in [`app/global
 | Question wording, answers, points, which questions feed each dimension | `lib/assessment/questions.ts` |
 | Score bands, dimension maths, strongest/weakest logic | `lib/assessment/scoring.ts` |
 | Diagnosis copy, pattern rules, strengths/weaknesses, recommendations | `lib/assessment/diagnosis.ts` |
-| CTA copy and link | `lib/config.ts` |
+| Workshop offer copy, price and Reserve link | `lib/config.ts` |
 | Colours, radii, shadow, fonts | `app/globals.css` (`@theme`) |
 
 Scores are always recalculated on the server from the selected option, so the browser can't send a made-up score.

@@ -11,6 +11,14 @@ interface Props {
   onRetake: () => void;
 }
 
+function ReserveButton({ className = "" }: { className?: string }) {
+  return (
+    <a href={CTA.url} target="_blank" rel="noopener noreferrer" className={`btn btn-primary w-full sm:w-auto sm:min-w-[240px] ${className}`}>
+      {CTA.buttonLabel}
+    </a>
+  );
+}
+
 export const Results = forwardRef<HTMLHeadingElement, Props>(function Results({ result, firstName, onRetake }, headingRef) {
   const [filled, setFilled] = useState(false);
   useEffect(() => {
@@ -117,15 +125,39 @@ export const Results = forwardRef<HTMLHeadingElement, Props>(function Results({ 
         </div>
       </article>
 
-      {/* CTA */}
-      <section className="card px-6 py-9 text-center sm:px-10 sm:py-11" aria-labelledby="cta-title">
-        <h2 id="cta-title" className="serif mx-auto max-w-[22ch] text-[28px] leading-[1.15] sm:text-[34px]">
+      {/* Workshop offer */}
+      <section className="card px-6 py-9 sm:px-10 sm:py-11" aria-labelledby="cta-title">
+        <p className="eyebrow">{CTA.eyebrow}</p>
+        <h2 id="cta-title" className="serif mt-3 text-[28px] leading-[1.15] sm:text-[34px]">
           {CTA.heading}
         </h2>
-        <p className="mx-auto mt-4 max-w-[52ch] text-[16px] leading-relaxed text-body">{CTA.body}</p>
-        <a href={CTA.url} className="btn btn-primary mt-7 w-full sm:w-auto sm:min-w-[220px]">
-          {CTA.buttonLabel}
-        </a>
+        <p className="mt-4 text-[16px] leading-relaxed text-body">{CTA.body}</p>
+        <ReserveButton className="mt-7" />
+      </section>
+
+      <section className="card px-6 py-9 sm:px-10 sm:py-11" aria-labelledby="pain-title">
+        <h2 id="pain-title" className="serif text-[28px] leading-[1.15] sm:text-[34px]">
+          {CTA.painPoint.heading}
+        </h2>
+        <div className="mt-5 space-y-4 text-[16px] leading-relaxed text-body">
+          {CTA.painPoint.paragraphs.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+          <p className="font-semibold text-ink">{CTA.painPoint.closing}</p>
+        </div>
+
+        <dl className="mt-8 rounded-[12px] bg-brand-soft p-5 sm:p-6">
+          <div className="flex items-baseline justify-between gap-4 text-[15px] text-muted">
+            <dt>Total Value</dt>
+            <dd className="line-through">{CTA.price.totalValue}</dd>
+          </div>
+          <div className="mt-2 flex items-baseline justify-between gap-4">
+            <dt className="text-[16px] font-medium">Your price today</dt>
+            <dd className="serif text-[36px] leading-none text-brand">{CTA.price.today}</dd>
+          </div>
+        </dl>
+
+        <ReserveButton className="mt-6" />
       </section>
 
       <div className="no-print text-center">
